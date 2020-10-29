@@ -44,4 +44,7 @@ public class NovaPropostaRequest {
         return new Proposta(documento, email, nome, endereco, salario);
     } // CDD 1 - Proposta
 
+    public String getDocumento() {
+        return documento;
+    }
 }

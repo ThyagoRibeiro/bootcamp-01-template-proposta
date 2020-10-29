@@ -14,11 +14,14 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
+import java.util.Optional;
+
+import static org.mockito.Mockito.when;
 
 public class NovaPropostaControllerTest {
 
     @Test
-    @DisplayName("Testa criação de proposta da proposta controller")
+    @DisplayName("Testa criação de proposta, HttpStatus 201")
     void novaPropostaTest() {
 
         EntityManager entityManager = Mockito.mock(EntityManager.class);
@@ -33,8 +36,28 @@ public class NovaPropostaControllerTest {
 
         Proposta proposta = novaPropostaRequest.toModel();
 
-        //Mockito.verify(entityManager).persist(proposta);
         Assertions.assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
+
+    }
+
+    @Test
+    @DisplayName("Testa proposta existe, HttpStatus 422")
+    void propostaExistenteTest() {
+
+        EntityManager entityManager = Mockito.mock(EntityManager.class);
+        PropostaRepository propostaRepository = Mockito.mock(PropostaRepository.class);
+
+        NovaPropostaController novaPropostaController = new NovaPropostaController(entityManager, propostaRepository);
+        NovaPropostaRequest novaPropostaRequest = new NovaPropostaRequest("40455606889", "teste@teste.com.br", "teste", "Rua 1", BigDecimal.valueOf(1000.00));
+
+        when(propostaRepository.findByDocumento(novaPropostaRequest.getDocumento())).thenReturn(Optional.of(novaPropostaRequest.toModel()));
+
+        UriComponentsBuilder uriComponentsBuilder =  UriComponentsBuilder.newInstance();
+        ResponseEntity responseEntity = novaPropostaController.novaProposta(novaPropostaRequest, uriComponentsBuilder);
+
+        Proposta proposta = novaPropostaRequest.toModel();
+
+        Assertions.assertEquals(HttpStatus.UNPROCESSABLE_ENTITY, responseEntity.getStatusCode());
 
     }
 

@@ -14,7 +14,7 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
 
-// CDD Total: 3
+// CDD Total: 4
 
 @RestController
 public class NovaPropostaController {
@@ -31,6 +31,9 @@ public class NovaPropostaController {
     @PostMapping("/api/propostas")
     @Transactional
     public ResponseEntity<?> novaProposta(@RequestBody @Valid NovaPropostaRequest novaPropostaRequest, UriComponentsBuilder uriComponentsBuilder) { // CDD 1 - NovaPropostaRequest
+
+        if(propostaRepository.findByDocumento(novaPropostaRequest.getDocumento()).isPresent()) // CDD 1 - branch if
+            return ResponseEntity.unprocessableEntity().build();
 
         Proposta proposta = novaPropostaRequest.toModel(); // CDD 1 - Proposta
         entityManager.persist(proposta);
