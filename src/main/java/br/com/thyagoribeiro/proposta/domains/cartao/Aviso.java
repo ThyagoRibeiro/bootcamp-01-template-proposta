@@ -60,4 +60,5 @@ public class Aviso {
     public void setCartao(Cartao cartao) {
         this.cartao = cartao;
     }
+
 }

@@ -71,4 +71,5 @@ public class Bloqueio {
     public void setCartao(Cartao cartao) {
         this.cartao = cartao;
     }
+
 }

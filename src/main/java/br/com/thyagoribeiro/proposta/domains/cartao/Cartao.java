@@ -55,4 +55,84 @@ public class Cartao {
         this.renegociacao = renegociacao;
         this.vencimento = vencimento;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getDataEmissao() {
+        return dataEmissao;
+    }
+
+    public void setDataEmissao(LocalDateTime dataEmissao) {
+        this.dataEmissao = dataEmissao;
+    }
+
+    public String getTitular() {
+        return titular;
+    }
+
+    public void setTitular(String titular) {
+        this.titular = titular;
+    }
+
+    public List<Bloqueio> getBloqueioList() {
+        return bloqueioList;
+    }
+
+    public void setBloqueioList(List<Bloqueio> bloqueioList) {
+        this.bloqueioList = bloqueioList;
+    }
+
+    public List<Aviso> getAvisoList() {
+        return avisoList;
+    }
+
+    public void setAvisoList(List<Aviso> avisoList) {
+        this.avisoList = avisoList;
+    }
+
+    public List<Carteira> getCarteiraList() {
+        return carteiraList;
+    }
+
+    public void setCarteiraList(List<Carteira> carteiraList) {
+        this.carteiraList = carteiraList;
+    }
+
+    public List<Parcela> getParcelaList() {
+        return parcelaList;
+    }
+
+    public void setParcelaList(List<Parcela> parcelaList) {
+        this.parcelaList = parcelaList;
+    }
+
+    public BigDecimal getLimite() {
+        return limite;
+    }
+
+    public void setLimite(BigDecimal limite) {
+        this.limite = limite;
+    }
+
+    public Renegociacao getRenegociacao() {
+        return renegociacao;
+    }
+
+    public void setRenegociacao(Renegociacao renegociacao) {
+        this.renegociacao = renegociacao;
+    }
+
+    public Vencimento getVencimento() {
+        return vencimento;
+    }
+
+    public void setVencimento(Vencimento vencimento) {
+        this.vencimento = vencimento;
+    }
 }
