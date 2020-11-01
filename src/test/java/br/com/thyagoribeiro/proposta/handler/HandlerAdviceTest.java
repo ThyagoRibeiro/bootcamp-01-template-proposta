@@ -1,7 +1,5 @@
 package br.com.thyagoribeiro.proposta.handler;
 
-import br.com.thyagoribeiro.proposta.handler.ErroPadronizado;
-import br.com.thyagoribeiro.proposta.handler.HandlerAdvice;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

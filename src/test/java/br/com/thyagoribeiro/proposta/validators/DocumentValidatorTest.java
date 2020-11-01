@@ -1,8 +1,5 @@
 package br.com.thyagoribeiro.proposta.validators;
 
-import br.com.thyagoribeiro.proposta.validators.Document;
-import br.com.thyagoribeiro.proposta.validators.DocumentType;
-import br.com.thyagoribeiro.proposta.validators.DocumentValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

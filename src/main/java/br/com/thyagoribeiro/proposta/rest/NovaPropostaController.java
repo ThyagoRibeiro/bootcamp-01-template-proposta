@@ -1,10 +1,10 @@
 package br.com.thyagoribeiro.proposta.rest;
 
 import br.com.thyagoribeiro.proposta.clients.AnaliseFinanceiraClient;
-import br.com.thyagoribeiro.proposta.clients.contracts.AnaliseFinanceiraRequest;
-import br.com.thyagoribeiro.proposta.clients.contracts.AnaliseFinanceiraResponse;
-import br.com.thyagoribeiro.proposta.domains.Proposta;
-import br.com.thyagoribeiro.proposta.domains.StatusProposta;
+import br.com.thyagoribeiro.proposta.clients.contracts.analise_financeira.AnaliseFinanceiraRequest;
+import br.com.thyagoribeiro.proposta.clients.contracts.analise_financeira.AnaliseFinanceiraResponse;
+import br.com.thyagoribeiro.proposta.domains.proposta.Proposta;
+import br.com.thyagoribeiro.proposta.domains.proposta.StatusProposta;
 import br.com.thyagoribeiro.proposta.handler.ErroPadronizado;
 import br.com.thyagoribeiro.proposta.repositories.PropostaRepository;
 import br.com.thyagoribeiro.proposta.rest.contracts.NovaPropostaRequest;

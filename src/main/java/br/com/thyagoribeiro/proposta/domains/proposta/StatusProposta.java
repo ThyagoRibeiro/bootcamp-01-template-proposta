@@ -1,4 +1,4 @@
-package br.com.thyagoribeiro.proposta.domains;
+package br.com.thyagoribeiro.proposta.domains.proposta;
 
 import java.util.HashMap;
 import java.util.Map;

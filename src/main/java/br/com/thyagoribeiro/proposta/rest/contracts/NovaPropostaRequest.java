@@ -1,6 +1,6 @@
 package br.com.thyagoribeiro.proposta.rest.contracts;
 
-import br.com.thyagoribeiro.proposta.domains.Proposta;
+import br.com.thyagoribeiro.proposta.domains.proposta.Proposta;
 import br.com.thyagoribeiro.proposta.validators.Document;
 import br.com.thyagoribeiro.proposta.validators.DocumentType;
 
@@ -44,10 +44,6 @@ public class NovaPropostaRequest {
         this.salario = salario;
     }
 
-    public Proposta toModel(){
-        return new Proposta(documento, email, nome, endereco, salario);
-    } // CDD 1 - Proposta
-
     public String getDocumento() {
         return documento;
     }
@@ -87,4 +83,9 @@ public class NovaPropostaRequest {
     public void setSalario(BigDecimal salario) {
         this.salario = salario;
     }
+
+    public Proposta toModel(){
+        return new Proposta(documento, email, nome, endereco, salario);
+    } // CDD 1 - Proposta
+
 }

@@ -1,8 +1,8 @@
 package br.com.thyagoribeiro.proposta.handler;
 
 import br.com.thyagoribeiro.proposta.clients.AnaliseFinanceiraClient;
-import br.com.thyagoribeiro.proposta.clients.contracts.AnaliseFinanceiraRequest;
-import br.com.thyagoribeiro.proposta.clients.contracts.AnaliseFinanceiraResponse;
+import br.com.thyagoribeiro.proposta.clients.contracts.analise_financeira.AnaliseFinanceiraRequest;
+import br.com.thyagoribeiro.proposta.clients.contracts.analise_financeira.AnaliseFinanceiraResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import feign.FeignException;

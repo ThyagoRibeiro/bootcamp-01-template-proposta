@@ -1,6 +1,6 @@
-package br.com.thyagoribeiro.proposta.clients.contracts;
+package br.com.thyagoribeiro.proposta.clients.contracts.analise_financeira;
 
-import br.com.thyagoribeiro.proposta.domains.Proposta;
+import br.com.thyagoribeiro.proposta.domains.proposta.Proposta;
 
 public class AnaliseFinanceiraRequest {
 

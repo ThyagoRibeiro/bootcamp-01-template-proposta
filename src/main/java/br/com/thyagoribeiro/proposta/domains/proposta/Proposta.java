@@ -1,5 +1,6 @@
-package br.com.thyagoribeiro.proposta.domains;
+package br.com.thyagoribeiro.proposta.domains.proposta;
 
+import br.com.thyagoribeiro.proposta.domains.cartao.Cartao;
 import br.com.thyagoribeiro.proposta.validators.Document;
 import br.com.thyagoribeiro.proposta.validators.DocumentType;
 import org.hibernate.annotations.GenericGenerator;
@@ -40,6 +41,9 @@ public class Proposta {
     @NotNull
     @Enumerated(EnumType.STRING)
     private StatusProposta statusProposta;
+
+    @OneToOne(cascade=CascadeType.ALL)
+    private Cartao cartao;
 
     @Deprecated
     public Proposta() {
@@ -108,5 +112,13 @@ public class Proposta {
 
     public void setStatusProposta(StatusProposta statusProposta) {
         this.statusProposta = statusProposta;
+    }
+
+    public Cartao getCartao() {
+        return cartao;
+    }
+
+    public void setCartao(Cartao cartao) {
+        this.cartao = cartao;
     }
 }

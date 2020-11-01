@@ -1,7 +1,7 @@
 package br.com.thyagoribeiro.proposta.clients;
 
-import br.com.thyagoribeiro.proposta.clients.contracts.AnaliseFinanceiraRequest;
-import br.com.thyagoribeiro.proposta.clients.contracts.AnaliseFinanceiraResponse;
+import br.com.thyagoribeiro.proposta.clients.contracts.analise_financeira.AnaliseFinanceiraRequest;
+import br.com.thyagoribeiro.proposta.clients.contracts.analise_financeira.AnaliseFinanceiraResponse;
 import br.com.thyagoribeiro.proposta.handler.AnaliseFinanceiraClientFallback;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;

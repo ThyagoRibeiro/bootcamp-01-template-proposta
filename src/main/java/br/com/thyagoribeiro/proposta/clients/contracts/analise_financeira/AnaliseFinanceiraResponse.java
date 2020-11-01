@@ -1,4 +1,4 @@
-package br.com.thyagoribeiro.proposta.clients.contracts;
+package br.com.thyagoribeiro.proposta.clients.contracts.analise_financeira;
 
 public class AnaliseFinanceiraResponse {
 

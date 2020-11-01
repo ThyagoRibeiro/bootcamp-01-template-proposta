@@ -1,9 +1,9 @@
 package br.com.thyagoribeiro.proposta.rest;
 
 import br.com.thyagoribeiro.proposta.clients.AnaliseFinanceiraClient;
-import br.com.thyagoribeiro.proposta.clients.contracts.AnaliseFinanceiraResponse;
-import br.com.thyagoribeiro.proposta.domains.Proposta;
-import br.com.thyagoribeiro.proposta.domains.StatusProposta;
+import br.com.thyagoribeiro.proposta.clients.contracts.analise_financeira.AnaliseFinanceiraResponse;
+import br.com.thyagoribeiro.proposta.domains.proposta.Proposta;
+import br.com.thyagoribeiro.proposta.domains.proposta.StatusProposta;
 import br.com.thyagoribeiro.proposta.repositories.PropostaRepository;
 import br.com.thyagoribeiro.proposta.rest.contracts.NovaPropostaRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,7 +27,8 @@ import java.math.BigDecimal;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
