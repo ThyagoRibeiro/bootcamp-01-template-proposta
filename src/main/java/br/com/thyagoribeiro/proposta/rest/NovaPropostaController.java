@@ -41,7 +41,7 @@ public class NovaPropostaController {
     public ResponseEntity<?> novaProposta(@RequestBody @Valid NovaPropostaRequest novaPropostaRequest, UriComponentsBuilder uriComponentsBuilder) { // CDD 1 - NovaPropostaRequest
 
         if(propostaRepository.findByDocumento(novaPropostaRequest.getDocumento()).isPresent()) // CDD 1 - branch if
-            return ResponseEntity.unprocessableEntity().body(new ErroPadronizado(Arrays.asList("Esse documento já foi cadastrado em outra proposta")));
+            return ResponseEntity.unprocessableEntity().body(new ErroPadronizado("Esse documento já foi cadastrado em outra proposta"));
 
         Proposta proposta = novaPropostaRequest.toModel(); // CDD 1 - Proposta
         entityManager.persist(proposta);

@@ -1,5 +1,7 @@
 package br.com.thyagoribeiro.proposta.domains.cartao;
 
+import br.com.thyagoribeiro.proposta.domains.Biometria;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -34,6 +36,9 @@ public class Cartao {
 
     @OneToOne(cascade=CascadeType.ALL)
     private Vencimento vencimento;
+
+    @OneToMany(mappedBy = "cartao", cascade = CascadeType.PERSIST)
+    private List<Biometria> biometriaList;
 
     @Deprecated
     public Cartao() {
@@ -135,4 +140,13 @@ public class Cartao {
     public void setVencimento(Vencimento vencimento) {
         this.vencimento = vencimento;
     }
+
+    public List<Biometria> getBiometriaList() {
+        return biometriaList;
+    }
+
+    public void setBiometriaList(List<Biometria> biometriaList) {
+        this.biometriaList = biometriaList;
+    }
+
 }
