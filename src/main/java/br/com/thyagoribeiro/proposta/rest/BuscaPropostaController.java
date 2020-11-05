@@ -2,6 +2,7 @@ package br.com.thyagoribeiro.proposta.rest;
 
 import br.com.thyagoribeiro.proposta.domains.proposta.Proposta;
 import br.com.thyagoribeiro.proposta.handler.ErroPadronizado;
+import br.com.thyagoribeiro.proposta.rest.contracts.BuscaPropostaResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,7 +27,7 @@ public class BuscaPropostaController {
         if(proposta == null) // CDD 1 - branch if
             return ResponseEntity.badRequest().body(new ErroPadronizado(Arrays.asList("Proposta não encontrada")));
 
-        return ResponseEntity.ok(proposta);
+        return ResponseEntity.ok(new BuscaPropostaResponse(proposta));
 
     }
 
