@@ -1,6 +1,7 @@
 package br.com.thyagoribeiro.proposta.domains.cartao;
 
 import br.com.thyagoribeiro.proposta.domains.Biometria;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -11,7 +12,11 @@ import java.util.List;
 public class Cartao {
 
     @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
+
+    private String numeroCartao;
 
     private LocalDateTime dataEmissao;
 
@@ -44,8 +49,8 @@ public class Cartao {
     public Cartao() {
     }
 
-    public Cartao(String id, LocalDateTime dataEmissao, String titular, List<Bloqueio> bloqueioList, List<Aviso> avisoList, List<Carteira> carteiraList, List<Parcela> parcelaList, BigDecimal limite, Renegociacao renegociacao, Vencimento vencimento) {
-        this.id = id;
+    public Cartao(String numeroCartao, LocalDateTime dataEmissao, String titular, List<Bloqueio> bloqueioList, List<Aviso> avisoList, List<Carteira> carteiraList, List<Parcela> parcelaList, BigDecimal limite, Renegociacao renegociacao, Vencimento vencimento) {
+        this.numeroCartao = numeroCartao;
         this.dataEmissao = dataEmissao;
         this.titular = titular;
         this.bloqueioList = bloqueioList;
@@ -67,6 +72,14 @@ public class Cartao {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getNumeroCartao() {
+        return numeroCartao;
+    }
+
+    public void setNumeroCartao(String numeroCartao) {
+        this.numeroCartao = numeroCartao;
     }
 
     public LocalDateTime getDataEmissao() {
