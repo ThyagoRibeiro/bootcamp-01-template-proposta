@@ -8,6 +8,8 @@ import br.com.thyagoribeiro.proposta.domains.proposta.StatusProposta;
 import br.com.thyagoribeiro.proposta.handler.ErroPadronizado;
 import br.com.thyagoribeiro.proposta.repositories.PropostaRepository;
 import br.com.thyagoribeiro.proposta.rest.contracts.NovaPropostaRequest;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,6 +37,12 @@ public class NovaPropostaController {
     @Autowired
     private AnaliseFinanceiraClient analiseFinanceiraClient; // CDD 1 - AnaliseFinanceiraClient
 
+    private Counter propostaCriadaCounter;
+
+    public NovaPropostaController(MeterRegistry meterRegistry) {
+        propostaCriadaCounter = meterRegistry.counter("proposta_criada");
+    }
+
     @PostMapping("/api/propostas")
     @Transactional
     public ResponseEntity<?> novaProposta(@RequestBody @Valid NovaPropostaRequest novaPropostaRequest, UriComponentsBuilder uriComponentsBuilder) { // CDD 1 - NovaPropostaRequest
@@ -48,6 +56,8 @@ public class NovaPropostaController {
         ResponseEntity<AnaliseFinanceiraResponse> response = analiseFinanceiraClient.solicitacao(new AnaliseFinanceiraRequest(proposta)); // CDD 1 - NovaPropostaRequest
         proposta.setStatusProposta(StatusProposta.getByRestricao(response.getBody().getResultadoSolicitacao()));
         entityManager.persist(proposta);
+
+        propostaCriadaCounter.increment();
 
         URI consultaNovoRecurso = uriComponentsBuilder.path("/api/propostas/{id}").build(proposta.getId());
         return ResponseEntity.created(consultaNovoRecurso).build();
