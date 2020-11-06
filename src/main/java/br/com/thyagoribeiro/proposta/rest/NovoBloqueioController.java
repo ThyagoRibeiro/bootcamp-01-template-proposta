@@ -20,6 +20,8 @@ import java.net.URI;
 import java.security.Principal;
 import java.util.Arrays;
 
+// CDD Total - 7
+
 @RestController
 public class NovoBloqueioController {
 
@@ -27,25 +29,25 @@ public class NovoBloqueioController {
     private EntityManager entityManager;
 
     @Autowired
-    private CartoesClient cartoesClient;
+    private CartoesClient cartoesClient; // CDD 1 - Classe CartoesClient
 
     @PostMapping("/api/cartoes/{id_cartao}/bloqueios")
     @Transactional
     public ResponseEntity<?> novoBloqueio(@PathVariable("id_cartao") String cartaoId,
-                                          NovoBloqueiroRequest novoBloqueiroRequest,
+                                          NovoBloqueiroRequest novoBloqueiroRequest, // CDD 1 - Classe CartoesClient
                                           Principal principal,
                                           UriComponentsBuilder uriComponentsBuilder) {
 
-        Cartao cartao = entityManager.find(Cartao.class, cartaoId);
-        if(cartao == null)
-            return ResponseEntity.badRequest().body(new ErroPadronizado(Arrays.asList("Cartão não encontrado")));
+        Cartao cartao = entityManager.find(Cartao.class, cartaoId); // CDD 1 - Classe Cartao
+        if(cartao == null) // CDD 1 - branch if
+            return ResponseEntity.badRequest().body(new ErroPadronizado(Arrays.asList("Cartão não encontrado"))); // CDD 1 - Classe ErroPadronizado
 
-        Bloqueio bloqueio = novoBloqueiroRequest.toModel(cartao);
+        Bloqueio bloqueio = novoBloqueiroRequest.toModel(cartao); // CDD 1 - Classe Bloqueio
         cartao.getBloqueioList().add(bloqueio);
 
-        ResponseEntity<?> response = cartoesClient.bloqueiaCartao(cartao.getNumeroCartao(), new BloqueiaCartaoRequest(bloqueio));
-        if(response.getStatusCode().is2xxSuccessful())
-            bloqueio.setAtivo(true);
+        ResponseEntity<?> response = cartoesClient.bloqueiaCartao(cartao.getNumeroCartao(), new BloqueiaCartaoRequest(bloqueio)); // CDD 1 - Classe BloqueiaCartaoRequest
+
+        bloqueio.setAtivo(response.getStatusCode().is2xxSuccessful());
 
         entityManager.persist(cartao);
 
