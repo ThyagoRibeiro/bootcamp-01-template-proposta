@@ -3,10 +3,7 @@ package br.com.thyagoribeiro.proposta.rest.contracts;
 import br.com.thyagoribeiro.proposta.domains.Biometria;
 import br.com.thyagoribeiro.proposta.domains.cartao.Cartao;
 import br.com.thyagoribeiro.proposta.validators.Base64;
-import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;

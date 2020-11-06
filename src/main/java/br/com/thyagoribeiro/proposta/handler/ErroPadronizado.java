@@ -1,6 +1,5 @@
 package br.com.thyagoribeiro.proposta.handler;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 

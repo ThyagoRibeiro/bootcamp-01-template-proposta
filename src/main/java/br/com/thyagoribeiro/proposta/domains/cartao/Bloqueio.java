@@ -1,15 +1,16 @@
 package br.com.thyagoribeiro.proposta.domains.cartao;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 public class Bloqueio {
 
     @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
 
     private LocalDateTime dataBloqueio;
@@ -30,6 +31,13 @@ public class Bloqueio {
         this.dataBloqueio = dataBloqueio;
         this.sistemaResponsavel = sistemaResponsavel;
         this.ativo = ativo;
+    }
+
+    public Bloqueio(LocalDateTime dataBloqueio, String sistemaResponsavel, boolean ativo, Cartao cartao) {
+        this.dataBloqueio = dataBloqueio;
+        this.sistemaResponsavel = sistemaResponsavel;
+        this.ativo = ativo;
+        this.cartao = cartao;
     }
 
     public String getId() {

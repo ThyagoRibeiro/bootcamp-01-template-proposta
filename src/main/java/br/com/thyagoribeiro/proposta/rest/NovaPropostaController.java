@@ -20,7 +20,6 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.Arrays;
 
 // CDD Total: 6
 
