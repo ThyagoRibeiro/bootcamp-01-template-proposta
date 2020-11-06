@@ -16,3 +16,4 @@ public interface AnaliseFinanceiraClient {
     public ResponseEntity<AnaliseFinanceiraResponse> solicitacao(@RequestBody AnaliseFinanceiraRequest analiseFinanceiraRequest);
 
 }
+

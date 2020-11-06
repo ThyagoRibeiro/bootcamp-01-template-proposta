@@ -5,11 +5,15 @@ import br.com.thyagoribeiro.proposta.domains.cartao.Cartao;
 
 import java.time.LocalDateTime;
 
-public class NovoBloqueiroRequest {
+public class NovoBloqueioRequest {
 
     private String ip;
 
-    public NovoBloqueiroRequest(String ip) {
+    @Deprecated
+    public NovoBloqueioRequest() {
+    }
+
+    public NovoBloqueioRequest(String ip) {
         this.ip = ip;
     }
 
@@ -21,8 +25,8 @@ public class NovoBloqueiroRequest {
         this.ip = ip;
     }
 
-    public Bloqueio toModel(Cartao cartao) {
-        return new Bloqueio(LocalDateTime.now(), ip, false, cartao);
+    public Bloqueio toModel(Cartao cartao, String userAgent) {
+        return new Bloqueio(LocalDateTime.now(), ip, false, cartao, userAgent);
     }
 
 }

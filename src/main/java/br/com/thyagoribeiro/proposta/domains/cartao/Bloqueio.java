@@ -22,6 +22,8 @@ public class Bloqueio {
     @ManyToOne(fetch = FetchType.LAZY)
     private Cartao cartao;
 
+    private String userAgent;
+
     @Deprecated
     public Bloqueio() {
     }
@@ -33,11 +35,12 @@ public class Bloqueio {
         this.ativo = ativo;
     }
 
-    public Bloqueio(LocalDateTime dataBloqueio, String sistemaResponsavel, boolean ativo, Cartao cartao) {
+    public Bloqueio(LocalDateTime dataBloqueio, String sistemaResponsavel, boolean ativo, Cartao cartao, String userAgent) {
         this.dataBloqueio = dataBloqueio;
         this.sistemaResponsavel = sistemaResponsavel;
         this.ativo = ativo;
         this.cartao = cartao;
+        this.userAgent = userAgent;
     }
 
     public String getId() {
@@ -80,4 +83,11 @@ public class Bloqueio {
         this.cartao = cartao;
     }
 
+    public String getUserAgent() {
+        return userAgent;
+    }
+
+    public void setUserAgent(String userAgent) {
+        this.userAgent = userAgent;
+    }
 }
