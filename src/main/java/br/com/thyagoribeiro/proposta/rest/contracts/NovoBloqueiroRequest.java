@@ -22,7 +22,7 @@ public class NovoBloqueiroRequest {
     }
 
     public Bloqueio toModel(Cartao cartao) {
-        return new Bloqueio(LocalDateTime.now(), ip, true, cartao);
+        return new Bloqueio(LocalDateTime.now(), ip, false, cartao);
     }
 
 }
