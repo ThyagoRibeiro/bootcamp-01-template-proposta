@@ -3,6 +3,7 @@ package br.com.thyagoribeiro.proposta.domains.cartao;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -13,20 +14,35 @@ public class Aviso {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     String id;
 
-    private LocalDateTime dataValidade;
+    private LocalDate dataValidade;
 
     private String destino;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Cartao cartao;
 
+    private LocalDateTime instanteAviso;
+
+    private String ip;
+
+    private String userAgent;
+
     @Deprecated
     public Aviso() {
     }
 
-    public Aviso(LocalDateTime dataValidade, String destino) {
+    public Aviso(LocalDate dataValidade, String destino) {
         this.dataValidade = dataValidade;
         this.destino = destino;
+    }
+
+    public Aviso(LocalDate dataValidade, String destino, Cartao cartao, LocalDateTime instanteAviso, String ip, String userAgent) {
+        this.dataValidade = dataValidade;
+        this.destino = destino;
+        this.cartao = cartao;
+        this.instanteAviso = instanteAviso;
+        this.ip = ip;
+        this.userAgent = userAgent;
     }
 
     public String getId() {
@@ -37,11 +53,11 @@ public class Aviso {
         this.id = id;
     }
 
-    public LocalDateTime getDataValidade() {
+    public LocalDate getDataValidade() {
         return dataValidade;
     }
 
-    public void setDataValidade(LocalDateTime dataValidade) {
+    public void setDataValidade(LocalDate dataValidade) {
         this.dataValidade = dataValidade;
     }
 
