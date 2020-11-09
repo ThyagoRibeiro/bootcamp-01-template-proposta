@@ -1,6 +1,7 @@
 package br.com.thyagoribeiro.proposta.domains.cartao;
 
 import br.com.thyagoribeiro.proposta.domains.Biometria;
+import br.com.thyagoribeiro.proposta.domains.SolicitacaoSenha;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -44,6 +45,9 @@ public class Cartao {
 
     @OneToMany(mappedBy = "cartao", cascade = CascadeType.PERSIST)
     private List<Biometria> biometriaList;
+
+    @OneToMany(mappedBy = "cartao", cascade = CascadeType.PERSIST)
+    private List<SolicitacaoSenha> solicitacaoSenhaList;
 
     @Deprecated
     public Cartao() {
@@ -162,4 +166,11 @@ public class Cartao {
         this.biometriaList = biometriaList;
     }
 
+    public List<SolicitacaoSenha> getSolicitacaoSenhaList() {
+        return solicitacaoSenhaList;
+    }
+
+    public void setSolicitacaoSenhaList(List<SolicitacaoSenha> solicitacaoSenhaList) {
+        this.solicitacaoSenhaList = solicitacaoSenhaList;
+    }
 }
