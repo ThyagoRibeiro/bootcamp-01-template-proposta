@@ -17,16 +17,13 @@ import javax.transaction.Transactional;
 import java.net.URI;
 import java.util.Arrays;
 
-// CDD Total - 7
+// CDD Total - 5
 
 @RestController
 public class NovoBloqueioController {
 
     @PersistenceContext
     private EntityManager entityManager;
-
-    @Autowired
-    private CartoesClient cartoesClient; // CDD 1 - Classe CartoesClient
 
     @PostMapping("/api/cartoes/{id_cartao}/bloqueios")
     @Transactional
@@ -41,10 +38,6 @@ public class NovoBloqueioController {
 
         Bloqueio bloqueio = novoBloqueiroRequest.toModel(cartao, userAgent); // CDD 1 - Classe Bloqueio
         cartao.getBloqueioList().add(bloqueio);
-
-        ResponseEntity<?> response = cartoesClient.bloqueiaCartao(cartao.getNumeroCartao(), new BloqueiaCartaoRequest(bloqueio)); // CDD 1 - Classe BloqueiaCartaoRequest
-
-        bloqueio.setAtivo(response.getStatusCode().is2xxSuccessful());
 
         entityManager.persist(cartao);
 
