@@ -30,7 +30,7 @@ public class ConsultaCartaoScheduler {
 
         List<Proposta> propostaSemCartaoList = propostaRepository.findByStatusPropostaAndCartaoIdIsNull(StatusProposta.ELEGIVEL); // CDD 1 - Proposta
 
-        if(propostaSemCartaoList.isEmpty()) // CDD 1 - branch if
+         if(propostaSemCartaoList.isEmpty()) // CDD 1 - branch if
             return;
 
         for(Proposta proposta : propostaSemCartaoList) {

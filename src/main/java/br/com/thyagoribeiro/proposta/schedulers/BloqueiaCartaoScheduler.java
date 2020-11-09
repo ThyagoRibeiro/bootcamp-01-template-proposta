@@ -40,7 +40,7 @@ public class BloqueiaCartaoScheduler {
 
         for(Bloqueio bloqueioInativo : bloqueioInativoList) {
 
-            ResponseEntity<BloqueiaCartaoResponse> response = cartoesClient.bloqueiaCartao(bloqueioInativo.getCartao().getId(), new BloqueiaCartaoRequest(bloqueioInativo)); // CDD 1 - Classe BloqueiaCartaoRequest
+            ResponseEntity<BloqueiaCartaoResponse> response = cartoesClient.bloqueiaCartao(bloqueioInativo.getCartao().getNumeroCartao(), new BloqueiaCartaoRequest("Cartão Branco Proposta")); // CDD 1 - Classe BloqueiaCartaoRequest
             bloqueioInativo.setAtivo(response.getStatusCode().is2xxSuccessful());
 
         }

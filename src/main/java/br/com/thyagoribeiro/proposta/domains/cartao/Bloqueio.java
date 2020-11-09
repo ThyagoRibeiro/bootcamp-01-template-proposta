@@ -15,7 +15,7 @@ public class Bloqueio {
 
     private LocalDateTime dataBloqueio;
 
-    private String sistemaResponsavel;
+    private String ip;
 
     private boolean ativo;
 
@@ -28,16 +28,16 @@ public class Bloqueio {
     public Bloqueio() {
     }
 
-    public Bloqueio(String id, LocalDateTime dataBloqueio, String sistemaResponsavel, boolean ativo) {
+    public Bloqueio(String id, LocalDateTime dataBloqueio, String ip, boolean ativo) {
         this.id = id;
         this.dataBloqueio = dataBloqueio;
-        this.sistemaResponsavel = sistemaResponsavel;
+        this.ip = ip;
         this.ativo = ativo;
     }
 
-    public Bloqueio(LocalDateTime dataBloqueio, String sistemaResponsavel, boolean ativo, Cartao cartao, String userAgent) {
+    public Bloqueio(LocalDateTime dataBloqueio, Cartao cartao, String sistemaResponsavel, String userAgent, boolean ativo) {
         this.dataBloqueio = dataBloqueio;
-        this.sistemaResponsavel = sistemaResponsavel;
+        this.ip = sistemaResponsavel;
         this.ativo = ativo;
         this.cartao = cartao;
         this.userAgent = userAgent;
@@ -59,12 +59,12 @@ public class Bloqueio {
         this.dataBloqueio = dataBloqueio;
     }
 
-    public String getSistemaResponsavel() {
-        return sistemaResponsavel;
+    public String getIp() {
+        return ip;
     }
 
-    public void setSistemaResponsavel(String sistemaResponsavel) {
-        this.sistemaResponsavel = sistemaResponsavel;
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 
     public boolean isAtivo() {

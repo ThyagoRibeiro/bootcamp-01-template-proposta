@@ -4,6 +4,10 @@ public class BloqueiaCartaoResponse {
 
     private String resultado;
 
+    @Deprecated
+    public BloqueiaCartaoResponse() {
+    }
+
     public BloqueiaCartaoResponse(String resultado) {
         this.resultado = resultado;
     }

@@ -10,8 +10,8 @@ public class BloqueiaCartaoRequest {
     public BloqueiaCartaoRequest() {
     }
 
-    public BloqueiaCartaoRequest(Bloqueio bloqueio) {
-        this.sistemaResponsavel = bloqueio.getSistemaResponsavel();
+    public BloqueiaCartaoRequest(String sistemaResponsavel) {
+        this.sistemaResponsavel = sistemaResponsavel;
     }
 
     public String getSistemaResponsavel() {
