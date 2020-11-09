@@ -1,6 +1,8 @@
 package br.com.thyagoribeiro.proposta.handler;
 
 import br.com.thyagoribeiro.proposta.clients.CartoesClient;
+import br.com.thyagoribeiro.proposta.clients.contracts.AvisoCartaoRequest;
+import br.com.thyagoribeiro.proposta.clients.contracts.AvisoCartaoResponse;
 import br.com.thyagoribeiro.proposta.clients.contracts.cartao.BloqueiaCartaoResponse;
 import br.com.thyagoribeiro.proposta.clients.contracts.cartao.BloqueiaCartaoRequest;
 import br.com.thyagoribeiro.proposta.clients.contracts.cartao.BuscaCartaoResponse;
@@ -26,7 +28,15 @@ public class CartaoClientFallback implements FallbackFactory<CartoesClient> {
 
             @Override
             public ResponseEntity<BloqueiaCartaoResponse> bloqueiaCartao(String numeroCartao, BloqueiaCartaoRequest bloqueiaCartaoRequest) {
+                return retornaHttpStatus();
+            }
 
+            @Override
+            public ResponseEntity<AvisoCartaoResponse> avisoCartao(String numeroCartao, AvisoCartaoRequest avisoCartaoRequest) {
+                return retornaHttpStatus();
+            }
+
+            private ResponseEntity retornaHttpStatus() {
                 if(cause instanceof FeignException) {
 
                     FeignException feignException = (FeignException) cause;

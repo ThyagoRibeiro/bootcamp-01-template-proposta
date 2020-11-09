@@ -1,5 +1,7 @@
 package br.com.thyagoribeiro.proposta.clients;
 
+import br.com.thyagoribeiro.proposta.clients.contracts.AvisoCartaoRequest;
+import br.com.thyagoribeiro.proposta.clients.contracts.AvisoCartaoResponse;
 import br.com.thyagoribeiro.proposta.clients.contracts.cartao.BloqueiaCartaoResponse;
 import br.com.thyagoribeiro.proposta.clients.contracts.cartao.BloqueiaCartaoRequest;
 import br.com.thyagoribeiro.proposta.clients.contracts.cartao.BuscaCartaoResponse;
@@ -17,7 +19,10 @@ public interface CartoesClient {
     @GetMapping(value = "/api/cartoes")
     public ResponseEntity<BuscaCartaoResponse> buscaCartao(@RequestParam("idProposta") String idProposta);
 
-    @PostMapping(value = "/api/cartoes/{id_cartao}/bloqueios")
-    public ResponseEntity<BloqueiaCartaoResponse> bloqueiaCartao(@PathVariable("id_cartao") String numeroCartao, BloqueiaCartaoRequest bloqueiaCartaoRequest);
+    @PostMapping(value = "/api/cartoes/{id}/bloqueios")
+    public ResponseEntity<BloqueiaCartaoResponse> bloqueiaCartao(@PathVariable("id") String numeroCartao, BloqueiaCartaoRequest bloqueiaCartaoRequest);
+
+    @PostMapping(value = "/api/cartoes/{id}/avisos")
+    public ResponseEntity<AvisoCartaoResponse> avisoCartao(@PathVariable("id") String numeroCartao, AvisoCartaoRequest avisoCartaoRequest);
 
 }

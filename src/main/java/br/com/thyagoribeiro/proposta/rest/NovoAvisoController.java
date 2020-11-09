@@ -1,9 +1,13 @@
 package br.com.thyagoribeiro.proposta.rest;
 
+import br.com.thyagoribeiro.proposta.clients.contracts.AvisoCartaoRequest;
+import br.com.thyagoribeiro.proposta.clients.CartoesClient;
+import br.com.thyagoribeiro.proposta.clients.contracts.AvisoCartaoResponse;
 import br.com.thyagoribeiro.proposta.domains.cartao.Aviso;
 import br.com.thyagoribeiro.proposta.domains.cartao.Cartao;
 import br.com.thyagoribeiro.proposta.handler.ErroPadronizado;
 import br.com.thyagoribeiro.proposta.rest.contracts.NovoAvisoRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -21,6 +25,9 @@ public class NovoAvisoController {
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Autowired
+    private CartoesClient cartoesClient;
+
     @PostMapping("/api/cartoes/{id_cartao}/avisos")
     @Transactional
     public ResponseEntity<?> novoAviso(@PathVariable("id_cartao") String cartaoId,
@@ -35,6 +42,11 @@ public class NovoAvisoController {
 
         Aviso aviso = novoAvisoRequest.toModel(cartao, userAgent, host);
         cartao.getAvisoList().add(aviso);
+
+        ResponseEntity<AvisoCartaoResponse> response = cartoesClient.avisoCartao(cartao.getNumeroCartao(), new AvisoCartaoRequest(aviso));
+
+        if(!response.getStatusCode().is2xxSuccessful())
+            return ResponseEntity.unprocessableEntity().body(new ErroPadronizado(Arrays.asList("Sistema legado retornou erro"))); // CDD 1 - Classe ErroPadronizado
 
         entityManager.persist(cartao);
 
