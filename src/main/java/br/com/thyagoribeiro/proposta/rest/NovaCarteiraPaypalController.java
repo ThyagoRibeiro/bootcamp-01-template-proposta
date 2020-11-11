@@ -31,7 +31,7 @@ public class NovaCarteiraPaypalController {
     private CarteiraService carteiraService; // CDD 1 - Classe CartoesClient
 
     @PostMapping("/api/cartoes/{id_cartao}/carteiras_paypal")
-    public ResponseEntity<?> novaCarteira(@PathVariable("id_cartao") String cartaoId,
+    public ResponseEntity<?> novaCarteiraPaypal(@PathVariable("id_cartao") String cartaoId,
                                           @RequestBody @Valid NovaCarteiraPaypalRequest novaCarteiraPaypalRequest, // CDD 1 - Classe NovaCarteiraPaypalRequest
                                           UriComponentsBuilder uriComponentsBuilder) {
 
