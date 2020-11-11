@@ -2,9 +2,9 @@ package br.com.thyagoribeiro.proposta.clients;
 
 import br.com.thyagoribeiro.proposta.clients.contracts.AvisoCartaoRequest;
 import br.com.thyagoribeiro.proposta.clients.contracts.AvisoCartaoResponse;
-import br.com.thyagoribeiro.proposta.clients.contracts.cartao.BloqueiaCartaoResponse;
-import br.com.thyagoribeiro.proposta.clients.contracts.cartao.BloqueiaCartaoRequest;
-import br.com.thyagoribeiro.proposta.clients.contracts.cartao.BuscaCartaoResponse;
+import br.com.thyagoribeiro.proposta.clients.contracts.CartaoCarteiraRequest;
+import br.com.thyagoribeiro.proposta.clients.contracts.CarteiraCartaoResponse;
+import br.com.thyagoribeiro.proposta.clients.contracts.cartao.*;
 import br.com.thyagoribeiro.proposta.handler.CartaoClientFallback;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
@@ -24,5 +24,8 @@ public interface CartoesClient {
 
     @PostMapping(value = "/api/cartoes/{id}/avisos")
     public ResponseEntity<AvisoCartaoResponse> avisoCartao(@PathVariable("id") String numeroCartao, AvisoCartaoRequest avisoCartaoRequest);
+
+    @PostMapping(value = "/api/cartoes/{id}/carteiras")
+    public ResponseEntity<CarteiraCartaoResponse> carteiraCartao(@PathVariable("id") String numeroCartao, CartaoCarteiraRequest cartaoCarteiraRequest);
 
 }

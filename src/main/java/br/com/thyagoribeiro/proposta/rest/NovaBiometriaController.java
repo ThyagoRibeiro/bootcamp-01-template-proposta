@@ -1,6 +1,6 @@
 package br.com.thyagoribeiro.proposta.rest;
 
-import br.com.thyagoribeiro.proposta.domains.Biometria;
+import br.com.thyagoribeiro.proposta.domains.cartao.Biometria;
 import br.com.thyagoribeiro.proposta.domains.cartao.Cartao;
 import br.com.thyagoribeiro.proposta.handler.ErroPadronizado;
 import br.com.thyagoribeiro.proposta.rest.contracts.NovaBiometriaRequest;
@@ -41,7 +41,7 @@ public class NovaBiometriaController {
 
         entityManager.persist(cartao);
 
-        URI consultaNovoRecurso = uriComponentsBuilder.path("/api/cartoes/{id_cartao}/biometrias/{id}").build(cartaoId, biometria.getId());
+        URI consultaNovoRecurso = uriComponentsBuilder.path("/api/cartoes/{id_cartao}/biometrias/{id_biometria}").build(cartaoId, biometria.getId());
         return ResponseEntity.created(consultaNovoRecurso).build();
     }
 

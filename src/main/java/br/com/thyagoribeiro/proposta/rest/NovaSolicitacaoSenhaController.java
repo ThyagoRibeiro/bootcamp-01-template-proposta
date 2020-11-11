@@ -1,6 +1,6 @@
 package br.com.thyagoribeiro.proposta.rest;
 
-import br.com.thyagoribeiro.proposta.domains.SolicitacaoSenha;
+import br.com.thyagoribeiro.proposta.domains.cartao.SolicitacaoSenha;
 import br.com.thyagoribeiro.proposta.domains.cartao.Cartao;
 import br.com.thyagoribeiro.proposta.handler.ErroPadronizado;
 import org.springframework.http.ResponseEntity;

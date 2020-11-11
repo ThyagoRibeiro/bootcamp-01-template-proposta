@@ -1,4 +1,4 @@
-package br.com.thyagoribeiro.proposta.domains;
+package br.com.thyagoribeiro.proposta.domains.cartao;
 
 import br.com.thyagoribeiro.proposta.domains.cartao.Cartao;
 import org.hibernate.annotations.GenericGenerator;

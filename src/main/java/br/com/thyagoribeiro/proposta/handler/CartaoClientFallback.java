@@ -3,6 +3,8 @@ package br.com.thyagoribeiro.proposta.handler;
 import br.com.thyagoribeiro.proposta.clients.CartoesClient;
 import br.com.thyagoribeiro.proposta.clients.contracts.AvisoCartaoRequest;
 import br.com.thyagoribeiro.proposta.clients.contracts.AvisoCartaoResponse;
+import br.com.thyagoribeiro.proposta.clients.contracts.CartaoCarteiraRequest;
+import br.com.thyagoribeiro.proposta.clients.contracts.CarteiraCartaoResponse;
 import br.com.thyagoribeiro.proposta.clients.contracts.cartao.BloqueiaCartaoResponse;
 import br.com.thyagoribeiro.proposta.clients.contracts.cartao.BloqueiaCartaoRequest;
 import br.com.thyagoribeiro.proposta.clients.contracts.cartao.BuscaCartaoResponse;
@@ -33,6 +35,11 @@ public class CartaoClientFallback implements FallbackFactory<CartoesClient> {
 
             @Override
             public ResponseEntity<AvisoCartaoResponse> avisoCartao(String numeroCartao, AvisoCartaoRequest avisoCartaoRequest) {
+                return retornaHttpStatus();
+            }
+
+            @Override
+            public ResponseEntity<CarteiraCartaoResponse> carteiraCartao(String numeroCartao, CartaoCarteiraRequest cartaoCarteiraRequest) {
                 return retornaHttpStatus();
             }
 

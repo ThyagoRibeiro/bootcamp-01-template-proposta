@@ -1,7 +1,5 @@
 package br.com.thyagoribeiro.proposta.domains.cartao;
 
-import br.com.thyagoribeiro.proposta.domains.Biometria;
-import br.com.thyagoribeiro.proposta.domains.SolicitacaoSenha;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;

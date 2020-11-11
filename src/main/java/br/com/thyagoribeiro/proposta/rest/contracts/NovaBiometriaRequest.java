@@ -1,6 +1,6 @@
 package br.com.thyagoribeiro.proposta.rest.contracts;
 
-import br.com.thyagoribeiro.proposta.domains.Biometria;
+import br.com.thyagoribeiro.proposta.domains.cartao.Biometria;
 import br.com.thyagoribeiro.proposta.domains.cartao.Cartao;
 import br.com.thyagoribeiro.proposta.validators.Base64;
 
