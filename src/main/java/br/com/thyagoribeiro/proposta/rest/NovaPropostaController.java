@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.encrypt.TextEncryptor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,6 +42,9 @@ public class NovaPropostaController {
     @Autowired
     private AnaliseFinanceiraClient analiseFinanceiraClient; // CDD 1 - AnaliseFinanceiraClient
 
+    @Autowired
+    private TextEncryptor textEncryptor;
+
     private final Counter propostaCriadaCounter;
     private final Tracer tracer;
     private final Logger logger;
@@ -63,10 +67,10 @@ public class NovaPropostaController {
         if(propostaRepository.findByDocumento(novaPropostaRequest.getDocumento()).isPresent()) // CDD 1 - branch if
             return ResponseEntity.unprocessableEntity().body(new ErroPadronizado("Esse documento já foi cadastrado em outra proposta"));
 
-        Proposta proposta = novaPropostaRequest.toModel(); // CDD 1 - Proposta
+        Proposta proposta = novaPropostaRequest.toModel(textEncryptor); // CDD 1 - Proposta
         entityManager.persist(proposta);
 
-        ResponseEntity<AnaliseFinanceiraResponse> response = analiseFinanceiraClient.solicitacao(new AnaliseFinanceiraRequest(proposta)); // CDD 1 - NovaPropostaRequest
+        ResponseEntity<AnaliseFinanceiraResponse> response = analiseFinanceiraClient.solicitacao(new AnaliseFinanceiraRequest(proposta, textEncryptor)); // CDD 1 - NovaPropostaRequest
         proposta.setStatusProposta(StatusProposta.getByRestricao(response.getBody().getResultadoSolicitacao()));
         entityManager.persist(proposta);
 

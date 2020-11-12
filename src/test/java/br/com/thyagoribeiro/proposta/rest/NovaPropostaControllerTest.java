@@ -17,6 +17,7 @@ import org.mockito.invocation.InvocationOnMock;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.encrypt.TextEncryptor;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -46,6 +47,9 @@ public class NovaPropostaControllerTest {
 
     @Mock
     private AnaliseFinanceiraClient analiseFinanceiraClient; // CDD 1 - AnaliseFinanceiraClient
+
+    @Mock
+    private TextEncryptor textEncryptor;
 
     private ObjectMapper objectMapper;
     private MockMvc mockMvc;
@@ -91,7 +95,7 @@ public class NovaPropostaControllerTest {
        AnaliseFinanceiraResponse analiseFinanceiraResponse = new AnaliseFinanceiraResponse(novaPropostaRequest.getDocumento(), novaPropostaRequest.getNome(), "id", StatusProposta.ELEGIVEL.restricao);
        ResponseEntity responseEntity = new ResponseEntity<AnaliseFinanceiraResponse>(analiseFinanceiraResponse, HttpStatus.CREATED);
 
-       when(propostaRepository.findByDocumento(any())).thenReturn(Optional.of(novaPropostaRequest.toModel()));
+       when(propostaRepository.findByDocumento(any())).thenReturn(Optional.of(novaPropostaRequest.toModel(textEncryptor)));
        when(analiseFinanceiraClient.solicitacao(any())).thenReturn(responseEntity);
 
        ResultActions response = mockMvc.perform(

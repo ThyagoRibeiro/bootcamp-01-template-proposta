@@ -1,6 +1,7 @@
 package br.com.thyagoribeiro.proposta.clients.contracts.analise_financeira;
 
 import br.com.thyagoribeiro.proposta.domains.proposta.Proposta;
+import org.springframework.security.crypto.encrypt.TextEncryptor;
 
 public class AnaliseFinanceiraRequest {
 
@@ -12,8 +13,8 @@ public class AnaliseFinanceiraRequest {
     public AnaliseFinanceiraRequest() {
     }
 
-    public AnaliseFinanceiraRequest(Proposta proposta) {
-        this.documento = proposta.getDocumento();
+    public AnaliseFinanceiraRequest(Proposta proposta, TextEncryptor textEncryptor) {
+        this.documento = textEncryptor.decrypt(proposta.getDocumento());
         this.nome = proposta.getNome();
         this.idProposta = proposta.getId();
     }

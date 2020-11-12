@@ -3,6 +3,7 @@ package br.com.thyagoribeiro.proposta.rest.contracts;
 import br.com.thyagoribeiro.proposta.domains.proposta.Proposta;
 import br.com.thyagoribeiro.proposta.validators.Document;
 import br.com.thyagoribeiro.proposta.validators.DocumentType;
+import org.springframework.security.crypto.encrypt.TextEncryptor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -84,8 +85,8 @@ public class NovaPropostaRequest {
         this.salario = salario;
     }
 
-    public Proposta toModel(){
-        return new Proposta(documento, email, nome, endereco, salario);
+    public Proposta toModel(TextEncryptor textEncryptor){
+        return new Proposta(textEncryptor.encrypt(documento), email, nome, endereco, salario);
     } // CDD 1 - Proposta
 
 }

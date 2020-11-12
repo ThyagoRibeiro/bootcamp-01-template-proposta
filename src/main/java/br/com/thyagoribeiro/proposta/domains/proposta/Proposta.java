@@ -1,9 +1,14 @@
 package br.com.thyagoribeiro.proposta.domains.proposta;
 
 import br.com.thyagoribeiro.proposta.domains.cartao.Cartao;
+import br.com.thyagoribeiro.proposta.configuration.EncryptorConfiguration;
 import br.com.thyagoribeiro.proposta.validators.Document;
 import br.com.thyagoribeiro.proposta.validators.DocumentType;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.encrypt.Encryptors;
+import org.springframework.security.crypto.encrypt.TextEncryptor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -20,7 +25,6 @@ public class Proposta {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
 
-    @Document(documentTypes = {DocumentType.CNPJ, DocumentType.CPF})
     @NotBlank
     private String documento;
 
